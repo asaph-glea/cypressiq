@@ -41,10 +41,12 @@
                     <span class="nav-icon">🖼️</span> Media Library
                 </button>
 
-                <div class="admin-nav-label">Growth</div>
-                <button class="admin-nav-item" onclick="showPanel('leads',this)">
-                    <span class="nav-icon">🎯</span> Leads / CRM
-                    <span class="admin-nav-badge">12</span>
+                <div class="admin-nav-label">Growth & CRM</div>
+                <button class="admin-nav-item" onclick="showPanel('messages',this)">
+                    <span class="nav-icon">📥</span> Inbox (Messages)
+                </button>
+                <button class="admin-nav-item" onclick="showPanel('bookings',this)">
+                    <span class="nav-icon">📅</span> Bookings
                 </button>
                 <button class="admin-nav-item" onclick="showPanel('newsletter',this)">
                     <span class="nav-icon">📬</span> Newsletter
@@ -54,6 +56,9 @@
                 </button>
 
                 <div class="admin-nav-label">Settings</div>
+                <button class="admin-nav-item" onclick="showPanel('contact-settings',this)">
+                    <span class="nav-icon">📞</span> Contact Settings
+                </button>
                 <button class="admin-nav-item" onclick="showPanel('seo',this)">
                     <span class="nav-icon">🔍</span> SEO Settings
                 </button>
@@ -116,7 +121,7 @@
             if (panel) panel.classList.add('active');
             document.querySelectorAll('.admin-nav-item').forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
-            const titles = { dashboard: 'Dashboard', posts: 'Blog Posts', editor: 'New Post', media: 'Media Library', leads: 'Leads & CRM', newsletter: 'Newsletter', analytics: 'Analytics', seo: 'SEO Settings', settings: 'General Settings' };
+            const titles = { dashboard: 'Dashboard', posts: 'Blog Posts', editor: 'New Post', media: 'Media Library', messages: 'Inbox (Messages)', bookings: 'Bookings', newsletter: 'Newsletter', analytics: 'Analytics', seo: 'SEO Settings', settings: 'General Settings', 'contact-settings': 'Contact Settings' };
             document.getElementById('panel-title').textContent = titles[id] || id;
         }
 

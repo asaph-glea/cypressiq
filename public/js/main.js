@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CYPRESSIQ AGENCY — CORE JAVASCRIPT
  * Handles: Theme, Navigation, Animations, Counters, Chatbot, Tools
  */
@@ -621,26 +621,7 @@ const Toast = {
 // ─── FORM HANDLERS ───────────────────────────────────────────
 const FormManager = {
   init() {
-    document.querySelectorAll('.contact-form, .lead-form').forEach(form => {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = form.querySelector('[type="submit"]');
-        const origText = btn.textContent;
-        btn.textContent = '⏳ Sending...';
-        btn.disabled = true;
-
-        // Simulate API call
-        setTimeout(() => {
-          btn.textContent = '✅ Sent!';
-          Toast.show('Message sent! We\'ll get back to you within 24 hours.', 'success');
-          form.reset();
-          setTimeout(() => {
-            btn.textContent = origText;
-            btn.disabled = false;
-          }, 2000);
-        }, 1500);
-      });
-    });
+    // Disabled to allow real backend submission
   }
 };
 

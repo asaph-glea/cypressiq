@@ -23,6 +23,10 @@ Route::middleware('throttle:60,1')->group(function () {
     Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 });
 
+// ── Lead Management Form Submissions ─────────────────────────────────────────
+Route::post('/contact-submit', [\App\Http\Controllers\ContactController::class, 'submitMessage']);
+Route::post('/booking-submit', [\App\Http\Controllers\ContactController::class, 'submitBooking']);
+
 // ── Admin Routes ──────────────────────────────────────────────────────────────
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
@@ -45,6 +49,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
             Route::apiResource('posts', PostController::class);
             Route::apiResource('leads', LeadController::class);
             Route::post('upload', [MediaController::class, 'upload'])->name('upload');
+            
+            // Lead Management System Routes
+            Route::get('contact-settings', [\App\Http\Controllers\Admin\LeadManagementController::class, 'getSettings']);
+            Route::put('contact-settings', [\App\Http\Controllers\Admin\LeadManagementController::class, 'updateSettings']);
+            Route::get('messages', [\App\Http\Controllers\Admin\LeadManagementController::class, 'getMessages']);
+            Route::put('messages/{id}/status', [\App\Http\Controllers\Admin\LeadManagementController::class, 'updateMessageStatus']);
+            Route::get('bookings', [\App\Http\Controllers\Admin\LeadManagementController::class, 'getBookings']);
+            Route::put('bookings/{id}/status', [\App\Http\Controllers\Admin\LeadManagementController::class, 'updateBookingStatus']);
         });
     });
 });

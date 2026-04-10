@@ -398,89 +398,86 @@
                     </div><!-- /editor-layout -->
                 </div>
 
-                <!-- ─── LEADS PANEL ─── -->
-                <div class="admin-panel" id="panel-leads">
+                <!-- ─── MESSAGES PANEL ─── -->
+                <div class="admin-panel" id="panel-messages">
                     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem">
                         <div>
-                            <h2 style="font-size:1.4rem;margin-bottom:.25rem">Leads &amp; CRM</h2>
-                            <p style="color:var(--text-muted);font-size:.875rem">312 total leads from blog content</p>
+                            <h2 style="font-size:1.4rem;margin-bottom:.25rem">Inbox (Messages)</h2>
+                            <p style="color:var(--text-muted);font-size:.875rem">Lead capture forms and contact inquiries</p>
                         </div>
-                        <button class="btn btn--outline btn--sm">⬇ Export CSV</button>
+                        <button class="btn btn--outline btn--sm" onclick="loadMessages()">↻ Refresh</button>
                     </div>
                     <div class="admin-table-wrap">
-                        <div class="admin-table-header">
-                            <div class="admin-table-title">📋 All Leads</div>
-                            <input type="text" placeholder="Search emails…" class="form-ctrl" style="max-width:200px" />
-                        </div>
-                        <table class="admin-table">
+                        <table class="admin-table" id="messages-table">
                             <thead>
                                 <tr>
+                                    <th>Name</th>
                                     <th>Email</th>
-                                    <th>Source Article</th>
-                                    <th>Type</th>
+                                    <th>Phone</th>
+                                    <th>Interest</th>
+                                    <th>Status</th>
                                     <th>Date</th>
-                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>james@retailghana.co</td>
-                                    <td>Why Every SME Needs an ERP</td>
-                                    <td><span class="lead-source-pill">Opero Demo</span></td>
-                                    <td>Mar 27, 2026</td>
-                                    <td><button class="table-action-btn">Contact</button><button
-                                            class="table-action-btn danger">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td>amara@buildtech.ng</td>
-                                    <td>Blog Newsletter</td>
-                                    <td><span class="lead-source-pill">Newsletter</span></td>
-                                    <td>Mar 27, 2026</td>
-                                    <td><button class="table-action-btn">Contact</button><button
-                                            class="table-action-btn danger">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td>ceo@pharmalink.ke</td>
-                                    <td>ERP Readiness Checklist</td>
-                                    <td><span class="lead-source-pill">Content Upgrade</span></td>
-                                    <td>Mar 26, 2026</td>
-                                    <td><button class="table-action-btn">Contact</button><button
-                                            class="table-action-btn danger">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td>founder@shopnest.co</td>
-                                    <td>$50K to $2M Playbook</td>
-                                    <td><span class="lead-source-pill">Exit Intent</span></td>
-                                    <td>Mar 26, 2026</td>
-                                    <td><button class="table-action-btn">Contact</button><button
-                                            class="table-action-btn danger">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td>growth@logitrans.com</td>
-                                    <td>10 SEO Strategies</td>
-                                    <td><span class="lead-source-pill">Mid-Article CTA</span></td>
-                                    <td>Mar 25, 2026</td>
-                                    <td><button class="table-action-btn">Contact</button><button
-                                            class="table-action-btn danger">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td>funmi@medsupply.ng</td>
-                                    <td>Google Ads Strategy</td>
-                                    <td><span class="lead-source-pill">Newsletter</span></td>
-                                    <td>Mar 24, 2026</td>
-                                    <td><button class="table-action-btn">Contact</button><button
-                                            class="table-action-btn danger">Remove</button></td>
-                                </tr>
-                                <tr>
-                                    <td>david@buildcorp.gh</td>
-                                    <td>Why Every SME Needs ERP</td>
-                                    <td><span class="lead-source-pill">Opero Demo</span></td>
-                                    <td>Mar 23, 2026</td>
-                                    <td><button class="table-action-btn">Contact</button><button
-                                            class="table-action-btn danger">Remove</button></td>
-                                </tr>
+                                <tr><td colspan="6" style="text-align:center">Loading messages...</td></tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- ─── BOOKINGS PANEL ─── -->
+                <div class="admin-panel" id="panel-bookings">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem">
+                        <div>
+                            <h2 style="font-size:1.4rem;margin-bottom:.25rem">Strategy Bookings</h2>
+                            <p style="color:var(--text-muted);font-size:.875rem">Requested 30-min strategy calls</p>
+                        </div>
+                        <button class="btn btn--outline btn--sm" onclick="loadBookings()">↻ Refresh</button>
+                    </div>
+                    <div class="admin-table-wrap">
+                        <table class="admin-table" id="bookings-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email / Phone</th>
+                                    <th>Time Slot</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td colspan="4" style="text-align:center">Loading bookings...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ─── CONTACT SETTINGS PANEL ─── -->
+                <div class="admin-panel" id="panel-contact-settings">
+                    <div style="margin-bottom:1.5rem">
+                        <h2 style="font-size:1.4rem;margin-bottom:.25rem">Contact Info Settings</h2>
+                        <p style="color:var(--text-muted);font-size:.875rem">Manage your company details shown globally</p>
+                    </div>
+                    <div class="settings-card" style="max-width: 600px;">
+                        <form id="contact-settings-form" onsubmit="saveContactSettings(event)">
+                            <div class="form-group-sm">
+                                <label class="form-label-sm">Company Email</label>
+                                <input type="email" id="cs_email" class="form-ctrl" />
+                            </div>
+                            <div class="form-group-sm">
+                                <label class="form-label-sm">Phone Number</label>
+                                <input type="text" id="cs_phone" class="form-ctrl" />
+                            </div>
+                            <div class="form-group-sm">
+                                <label class="form-label-sm">WhatsApp Number</label>
+                                <input type="text" id="cs_whatsapp" class="form-ctrl" />
+                            </div>
+                            <div class="form-group-sm">
+                                <label class="form-label-sm">Head Office Address</label>
+                                <textarea id="cs_address" class="form-ctrl" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn--primary" style="margin-top: 1rem">Save Settings</button>
+                        </form>
                     </div>
                 </div>
 
@@ -634,6 +631,126 @@
             alert('Network error occurred.');
         }
     }
+</script>
+
+<script>
+    // System API Fetchers
+    async function loadMessages() {
+        const tbody = document.querySelector('#messages-table tbody');
+        if(!tbody) return;
+        try {
+            const res = await fetch('/admin/api/messages');
+            const data = await res.json();
+            tbody.innerHTML = '';
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center">No messages found.</td></tr>';
+                return;
+            }
+            data.forEach(m => {
+                let badgeClass = m.status === 'new' ? 'color:#FF6B7A' : (m.status === 'replied' ? 'color:var(--clr-success)' : '');
+                tbody.innerHTML += `
+                <tr>
+                    <td><strong>${m.first_name} ${m.last_name}</strong></td>
+                    <td>${m.email}</td>
+                    <td>${m.phone || '-'}</td>
+                    <td>${m.service_interest}</td>
+                    <td>
+                        <select onchange="updateMessageStatus(${m.id}, this.value)" style="padding: 4px; border-radius:4px; font-weight:600; border:1px solid var(--border-subtle); background:var(--bg-glass); ${badgeClass}">
+                            <option value="new" ${m.status==='new'?'selected':''}>new</option>
+                            <option value="read" ${m.status==='read'?'selected':''}>read</option>
+                            <option value="replied" ${m.status==='replied'?'selected':''}>replied</option>
+                        </select>
+                    </td>
+                    <td>${new Date(m.created_at).toLocaleDateString()}</td>
+                </tr>`;
+            });
+        } catch(e) { console.error(e); }
+    }
+
+    async function updateMessageStatus(id, status) {
+        await fetch(`/admin/api/messages/${id}/status`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+            body: JSON.stringify({status})
+        });
+        loadMessages();
+    }
+
+    async function loadBookings() {
+        const tbody = document.querySelector('#bookings-table tbody');
+        if(!tbody) return;
+        try {
+            const res = await fetch('/admin/api/bookings');
+            const data = await res.json();
+            tbody.innerHTML = '';
+            if(data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center">No bookings found.</td></tr>';
+                return;
+            }
+            data.forEach(b => {
+                let badgeClass = b.status === 'pending' ? 'color:var(--clr-warning)' : (b.status === 'confirmed' ? 'color:var(--clr-success)' : '');
+                tbody.innerHTML += `
+                <tr>
+                    <td><strong>${b.name}</strong></td>
+                    <td>${b.email}<br><small style="color:var(--text-muted)">${b.phone||''}</small></td>
+                    <td>${b.preferred_time_slot}</td>
+                    <td>
+                        <select onchange="updateBookingStatus(${b.id}, this.value)" style="padding: 4px; border-radius:4px; font-weight:600; border:1px solid var(--border-subtle); background:var(--bg-glass); ${badgeClass}">
+                            <option value="pending" ${b.status==='pending'?'selected':''}>pending</option>
+                            <option value="confirmed" ${b.status==='confirmed'?'selected':''}>confirmed</option>
+                            <option value="completed" ${b.status==='completed'?'selected':''}>completed</option>
+                        </select>
+                    </td>
+                </tr>`;
+            });
+        } catch(e) { console.error(e); }
+    }
+
+    async function updateBookingStatus(id, status) {
+        await fetch(`/admin/api/bookings/${id}/status`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+            body: JSON.stringify({status})
+        });
+        loadBookings();
+    }
+
+    async function loadContactSettings() {
+        if(!document.getElementById('cs_email')) return;
+        try {
+            const res = await fetch('/admin/api/contact-settings');
+            const data = await res.json();
+            document.getElementById('cs_email').value = data.company_email || '';
+            document.getElementById('cs_phone').value = data.phone_number || '';
+            document.getElementById('cs_whatsapp').value = data.whatsapp_number || '';
+            document.getElementById('cs_address').value = data.address || '';
+        } catch(e) { console.error(e); }
+    }
+
+    async function saveContactSettings(e) {
+        e.preventDefault();
+        const payload = {
+            company_email: document.getElementById('cs_email').value,
+            phone_number: document.getElementById('cs_phone').value,
+            whatsapp_number: document.getElementById('cs_whatsapp').value,
+            address: document.getElementById('cs_address').value,
+        };
+        try {
+            const res = await fetch('/admin/api/contact-settings', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': '{{ csrf_token() }}'},
+                body: JSON.stringify(payload)
+            });
+            if(res.ok) alert('Settings saved successfully!');
+        } catch(e) { console.error(e); }
+    }
+
+    // Call them once to populate on load
+    document.addEventListener('DOMContentLoaded', () => {
+        loadMessages();
+        loadBookings();
+        loadContactSettings();
+    });
 </script>
                         <table class="admin-table">
                             <thead>
