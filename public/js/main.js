@@ -59,9 +59,9 @@ const NavManager = {
     this.mobileMenu?.classList.toggle('open');
     const spans = this.hamburger?.querySelectorAll('span');
     if (this.mobileMenu?.classList.contains('open')) {
-      spans?.[0]?.style && (spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)');
+      spans?.[0]?.style && (spans[0].style.transform = 'translateY(7px) rotate(45deg)');
       spans?.[1]?.style && (spans[1].style.opacity = '0');
-      spans?.[2]?.style && (spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)');
+      spans?.[2]?.style && (spans[2].style.transform = 'translateY(-7px) rotate(-45deg)');
     } else {
       spans?.forEach(s => {
         s.style.transform = '';
@@ -184,14 +184,14 @@ const ChatbotManager = {
   isOpen: false,
   messageCount: 0,
   knowledgeBase: {
-    hello: "👋 Hi there! I'm Cypressiq AI, your digital growth assistant. I can help you with:\n\n• Digital marketing services\n• Cypressiq ERP information\n• Project quotes\n• Booking a consultation\n\nWhat can I help you with today?",
-    services: "🚀 We offer a full suite of digital services:\n\n**Website Development** — Corporate, e-commerce, portals\n**SEO** — Rank higher, get more organic traffic\n**PPC Advertising** — Google & Meta ads that convert\n**Social Media** — Build and grow your brand\n**Content Creation** — Blogs, videos, graphics\n**Branding** — Identity and strategy\n\nWhich service interests you most?",
-    erp: "⚙️ **Cypressiq ERP** is our flagship business management system:\n\n• POS with real-time invoicing\n• Inventory & stock management\n• HR & payroll\n• Financial reporting\n• Role-based access control\n• Database backup\n\nBuilt with Laravel 11 for SMEs and growing businesses.\n\nWould you like to book a demo?",
-    pricing: "💰 Our pricing varies by project scope:\n\n**Websites:** $500 - $5,000+\n**SEO packages:** From $300/month\n**Cypressiq ERP:** From $49/month\n**PPC management:** 15% of ad spend\n\nUse our **Website Cost Estimator** for a custom quote, or book a free strategy call!",
-    demo: "📅 I'd love to schedule an Cypressiq ERP demo for you!\n\nClick below or visit our Contact page to book a 30-minute live demo where we'll show you:\n• Full POS walkthrough\n• Inventory management\n• Financial dashboards\n\n👉 [Book Demo Now](contact.html)",
-    contact: "📞 Get in touch with us:\n\n**Email:** hello@cypressiqagency.com\n**Phone:** +1 (555) 0123-4567\n**Working hours:** Mon-Fri, 9am - 6pm\n\nOr visit our [Contact page](contact.html) to book a free strategy audit!",
-    roi: "📈 Want to see your potential ROI? Use our interactive **ROI Calculator** on the Tools page!\n\nInput your current:\n• Ad spend\n• Traffic\n• Conversion rate\n\nAnd we'll show you your growth potential. [Try it now →](tools.html)",
-    default: "Thanks for your message! 🙏 One of our team members will get back to you shortly.\n\nFor immediate help, you can:\n• Call us: +1 (555) 0123-4567\n• Email: hello@cypressiqagency.com\n• [Book a free consultation](contact.html)"
+    hello: "👋 Hello! I'm the CypressIQ technical solutions assistant. CypressIQ builds technology that helps organizations operate, engage and grow.\n\nI can help you with:\n• **Opero** — Business Management Platform\n• **ITIKIA Campaign** — Public Engagement Platform\n• **Custom Technology** — Software, web apps, APIs\n• **Digital Transformation** — Modernizing fragmented workflows\n\nWhat can we help you engineer today?",
+    opero: "⚙️ **Opero** is our business management platform covering:\n\n• Point of Sale (POS) with real-time checkout\n• Multi-location inventory & stock alerts\n• HR & payroll processing\n• Financial accounting & reporting\n• CRM & supplier relationships\n• Role-based access control & backups\n\nBuilt on modern Laravel for ambitious organizations. Would you like to schedule an Opero platform walkthrough?",
+    itikia: "📣 **ITIKIA Campaign** is our digital engagement and communication platform designed for public-facing campaigns, organizations, and institutions:\n\n• Structured public profile & leadership storyline\n• Policy manifestos & solution matrices\n• Newsroom & press releases\n• Rallies, townhalls & event coordination\n• Downloadable media kits & manifesto PDFs\n• Grassroots volunteer intake & skills directory\n• Multi-channel contributions (Mobile Money & Bank)\n• Automated campaign completeness health score",
+    custom: "💻 **Custom Technology Capabilities**:\n\n• Web applications & customer portals\n• Custom business systems & databases\n• Workflow automation & integrations\n• REST & GraphQL API engineering\n• Cloud deployment & system modernization\n\nWe build software around your organization's exact operational requirements.",
+    transformation: "🔄 **Digital Transformation**:\n\nWe help organizations move from fragmented spreadsheets, paper records, and disconnected software toward connected, automated digital systems.\n\nOur process includes architecture audits, API integrations, data migration, and platform engineering.",
+    pricing: "💼 We scope solutions around your organization's requirements:\n\n• **Opero Platform:** Subscription tiers based on active modules\n• **ITIKIA Campaign:** Platform deployment & campaign setup packages\n• **Custom Engineering:** Milestone-based technical project contracts\n\nVisit our [Contact page](/contact) to schedule a consultation with our team!",
+    contact: "📅 Reach our engineering team:\n\n• Visit our [Contact page](/contact) to book a consultation\n• Email: hello@cypressiqagency.com\n• We respond within 24 business hours",
+    default: "Thank you for reaching out! 🙏 Our engineering team will review your query.\n\nYou can also visit our [Contact page](/contact) to book a technical consultation or explore our [Products](/products/opero)."
   },
 
   init() {
@@ -278,8 +278,11 @@ const ChatbotManager = {
       typing.remove();
       const msg = document.createElement('div');
       msg.className = 'chat-msg chat-msg--bot';
-      // Convert markdown-like bold to HTML
-      const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+      // Convert markdown-like bold and links to HTML
+      let formatted = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" style="color:var(--clr-accent);text-decoration:underline">$1</a>')
+        .replace(/\n/g, '<br>');
       msg.innerHTML = `
         <div class="chat-avatar">🤖</div>
         <div class="chat-bubble">${formatted}</div>
@@ -287,18 +290,18 @@ const ChatbotManager = {
       messages.appendChild(msg);
       messages.scrollTop = messages.scrollHeight;
       this.messageCount++;
-    }, 1200);
+    }, 1000);
   },
 
   processMessage(text) {
     let response = this.knowledgeBase.default;
     if (/hello|hi|hey|greet/i.test(text)) response = this.knowledgeBase.hello;
-    else if (/service|offer|do you|what|help/i.test(text)) response = this.knowledgeBase.services;
-    else if (/erp|cypressiq|system|software|pos|inventory|hr/i.test(text)) response = this.knowledgeBase.erp;
-    else if (/price|cost|how much|pricing|fee|pay/i.test(text)) response = this.knowledgeBase.pricing;
-    else if (/demo|trial|see|show|schedule/i.test(text)) response = this.knowledgeBase.demo;
-    else if (/contact|phone|email|reach|call/i.test(text)) response = this.knowledgeBase.contact;
-    else if (/roi|calculator|return|revenue/i.test(text)) response = this.knowledgeBase.roi;
+    else if (/itikia|campaign|engagement|election|rally|manifesto/i.test(text)) response = this.knowledgeBase.itikia;
+    else if (/opero|erp|pos|inventory|payroll|stock/i.test(text)) response = this.knowledgeBase.opero;
+    else if (/custom|software|system|app|api|cloud|integration|portal/i.test(text)) response = this.knowledgeBase.custom;
+    else if (/transformation|modern|migrate|spreadsheet|process/i.test(text)) response = this.knowledgeBase.transformation;
+    else if (/price|cost|how much|pricing|fee/i.test(text)) response = this.knowledgeBase.pricing;
+    else if (/contact|demo|call|schedule|book|phone|email/i.test(text)) response = this.knowledgeBase.contact;
 
     setTimeout(() => this.addBotMessage(response), 100);
   }
@@ -329,8 +332,18 @@ const ROICalculator = {
         emailGate.style.display = 'none';
         emailGate.classList.add('bypassed');
         this.calculate();
+        // Wire to backend lead capture
+        fetch('/lead-capture', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]')?.value || ''
+          },
+          body: JSON.stringify({ email: email, source: 'roi_calculator', type: 'calculator_lead' })
+        }).catch(() => {});
       }
     });
+
 
     // Live preview update
     const inputs = form.querySelectorAll('input[type="range"], input[type="number"]');

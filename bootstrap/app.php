@@ -14,12 +14,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Redirect unauthenticated guests to admin login
+        $middleware->redirectGuestsTo('/admin/login');
+
         // Append security headers to every HTTP response
         $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
 
         // Register named alias used on the admin route group
         $middleware->alias([
             'admin' => \App\Http\Middleware\EnsureIsAdmin::class,
+            'role'  => \App\Http\Middleware\EnsureRole::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

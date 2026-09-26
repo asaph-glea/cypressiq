@@ -15,7 +15,21 @@ class EnsureIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || !auth()->user()->is_admin) {
+        if (!auth()->check() || !auth()->user()->is_admin || !auth()->user()->is_active) {
+            if (auth()->check() && !auth()->user()->is_active) {
+                auth()->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                if ($request->expectsJson()) {
+                    return response()->json(['message' => 'Account is deactivated.'], 403);
+                }
+
+                return redirect()->route('admin.login')->withErrors([
+                    'email' => 'Your account has been deactivated. Please contact an administrator.',
+                ]);
+            }
+
             if ($request->expectsJson()) {
                 return response()->json(['message' => 'Forbidden.'], 403);
             }

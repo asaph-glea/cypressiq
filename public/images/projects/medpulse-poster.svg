@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgMed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1026"/>
+      <stop offset="50%" stop-color="#140a1c"/>
+      <stop offset="100%" stop-color="#0a050d"/>
+    </linearGradient>
+    <radialGradient id="haloMed" cx="50%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="rgba(244,63,94,0.2)"/>
+      <stop offset="100%" stop-color="rgba(30,16,38,0)"/>
+    </radialGradient>
+    <pattern id="gridMed" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(244,63,94,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgMed)"/>
+  <rect width="800" height="450" fill="url(#haloMed)"/>
+  <rect width="800" height="450" fill="url(#gridMed)"/>
+
+  <!-- Window Container -->
+  <g transform="translate(100, 45)">
+    <rect width="600" height="360" rx="16" fill="#140c1a" stroke="rgba(244,63,94,0.25)" stroke-width="1.5"/>
+    <rect width="600" height="42" rx="16" fill="#20112a"/>
+    <path d="M 0 42 L 600 42" stroke="rgba(244,63,94,0.15)" stroke-width="1"/>
+    <circle cx="24" cy="21" r="5" fill="#ef4444"/>
+    <circle cx="42" cy="21" r="5" fill="#f59e0b"/>
+    <circle cx="60" cy="21" r="5" fill="#10b981"/>
+    <rect x="90" y="10" width="360" height="22" rx="6" fill="rgba(0,0,0,0.4)"/>
+    <text x="105" y="25" fill="#fda4af" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11">medpulse-health.net/clinics/teleconsult-hub</text>
+
+    <!-- Content -->
+    <rect x="25" y="65" width="550" height="135" rx="10" fill="rgba(244,63,94,0.08)" stroke="rgba(244,63,94,0.3)" stroke-width="1"/>
+    <text x="45" y="105" fill="#fff1f2" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="22" font-weight="800">MEDPULSE HEALTHCARE PLATFORM</text>
+    <text x="45" y="130" fill="#fb7185" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="600">HIPAA-Compliant EHR • Multi-Clinic Portal • WebRTC Telehealth</text>
+    <text x="45" y="155" fill="#fecdd3" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11">Serving 6 Outpatient Medical Centers • 45k+ Patient Encounters Encrypted</text>
+
+    <!-- Metrics -->
+    <g transform="translate(25, 220)">
+      <rect width="170" height="110" rx="8" fill="#20112a" stroke="rgba(244,63,94,0.15)"/>
+      <text x="20" y="38" fill="#fb7185" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="bold">45,000+</text>
+      <text x="20" y="65" fill="#fff1f2" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="600">Encrypted Records</text>
+      <text x="20" y="85" fill="#fecdd3" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">AWS KMS AES-256</text>
+    </g>
+
+    <g transform="translate(215, 220)">
+      <rect width="170" height="110" rx="8" fill="#20112a" stroke="rgba(244,63,94,0.15)"/>
+      <text x="20" y="38" fill="#38bdf8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="bold">12,000+</text>
+      <text x="20" y="65" fill="#fff1f2" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="600">Virtual Consults</text>
+      <text x="20" y="85" fill="#bae6fd" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">HD WebRTC Video</text>
+    </g>
+
+    <g transform="translate(405, 220)">
+      <rect width="170" height="110" rx="8" fill="#20112a" stroke="rgba(244,63,94,0.15)"/>
+      <text x="20" y="38" fill="#34d399" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="bold">-50% Wait</text>
+      <text x="20" y="65" fill="#fff1f2" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="600">Queue Reduction</text>
+      <text x="20" y="85" fill="#a7f3d0" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">Automated Triage</text>
+    </g>
+  </g>
+</svg>

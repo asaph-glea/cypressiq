@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgApex" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#021b16"/>
+      <stop offset="50%" stop-color="#062b24"/>
+      <stop offset="100%" stop-color="#051412"/>
+    </linearGradient>
+    <radialGradient id="haloApex" cx="50%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="rgba(0,212,170,0.22)"/>
+      <stop offset="100%" stop-color="rgba(2,27,22,0)"/>
+    </radialGradient>
+    <pattern id="gridApex" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(0,212,170,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgApex)"/>
+  <rect width="800" height="450" fill="url(#haloApex)"/>
+  <rect width="800" height="450" fill="url(#gridApex)"/>
+
+  <!-- Window Container -->
+  <g transform="translate(100, 45)">
+    <rect width="600" height="360" rx="16" fill="#0b1715" stroke="rgba(0,212,170,0.25)" stroke-width="1.5"/>
+    <rect width="600" height="42" rx="16" fill="#0f2420"/>
+    <path d="M 0 42 L 600 42" stroke="rgba(0,212,170,0.15)" stroke-width="1"/>
+    <circle cx="24" cy="21" r="5" fill="#ef4444"/>
+    <circle cx="42" cy="21" r="5" fill="#f59e0b"/>
+    <circle cx="60" cy="21" r="5" fill="#10b981"/>
+    <rect x="90" y="10" width="360" height="22" rx="6" fill="rgba(0,0,0,0.4)"/>
+    <text x="105" y="25" fill="#5eead4" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11">apexlogix-telemetry.io/fleet/telemetry-monitor</text>
+
+    <!-- Content -->
+    <rect x="25" y="65" width="550" height="135" rx="10" fill="rgba(0,212,170,0.08)" stroke="rgba(0,212,170,0.3)" stroke-width="1"/>
+    <text x="45" y="105" fill="#f0fdfa" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="22" font-weight="800">APEXLOGIX COLD-CHAIN TELEMETRY</text>
+    <text x="45" y="130" fill="#00d4aa" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="600">IoT Sensor Integration • Dynamic Route Telemetry • Geofencing</text>
+    <text x="45" y="155" fill="#99f6e4" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11">Real-time -20°C to +4°C Pharma Cargo Monitoring • Zero Spoilage Rate</text>
+
+    <!-- Metrics -->
+    <g transform="translate(25, 220)">
+      <rect width="170" height="110" rx="8" fill="#0f2420" stroke="rgba(0,212,170,0.15)"/>
+      <text x="20" y="38" fill="#00d4aa" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="bold">120+ Trucks</text>
+      <text x="20" y="65" fill="#f0fdfa" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="600">Live Active Fleet</text>
+      <text x="20" y="85" fill="#5eead4" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">MQTT 100ms Ping</text>
+    </g>
+
+    <g transform="translate(215, 220)">
+      <rect width="170" height="110" rx="8" fill="#0f2420" stroke="rgba(0,212,170,0.15)"/>
+      <text x="20" y="38" fill="#38bdf8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="bold">1.2M km</text>
+      <text x="20" y="65" fill="#f0fdfa" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="600">Cross-Border Transit</text>
+      <text x="20" y="85" fill="#7dd3fc" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">0 Spoilage Incidents</text>
+    </g>
+
+    <g transform="translate(405, 220)">
+      <rect width="170" height="110" rx="8" fill="#0f2420" stroke="rgba(0,212,170,0.15)"/>
+      <text x="20" y="38" fill="#a78bfa" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="18" font-weight="bold">-28% Fuel</text>
+      <text x="20" y="65" fill="#f0fdfa" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="600">Route Optimization</text>
+      <text x="20" y="85" fill="#c4b5fd" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">TimescaleDB Engine</text>
+    </g>
+  </g>
+</svg>

@@ -1,225 +1,360 @@
 @extends('layouts.app')
-@section('title', 'Portfolio & Case Studies — Our Work')
+@section('title', 'Engineering Case Studies & System Implementations — CypressIQ')
 
 @section('css')
 <style>
-.portfolio-filters {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-    .filter-btn {
-      padding: 0.5rem 1.25rem;
-      border-radius: var(--radius-full);
-      font-size: 0.875rem;
-      font-weight: 500;
-      border: 1px solid var(--border-mid);
-      color: var(--text-secondary);
-      transition: all 0.2s;
-      cursor: pointer;
-      background: var(--bg-glass);
-    }
-    .filter-btn.active, .filter-btn:hover {
-      background: var(--gradient-primary);
-      color: white;
-      border-color: transparent;
-    }
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .portfolio-item {
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    .portfolio-item:hover { transform: translateY(-6px); border-color: var(--border-accent); box-shadow: var(--shadow-primary); }
-    .portfolio-thumb {
-      height: 200px;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .portfolio-thumb::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(108,99,255,0.6), rgba(0,212,170,0.4));
-    }
-    .portfolio-thumb .emoji { position: relative; z-index: 1; }
-    .portfolio-thumb--1 { background: linear-gradient(135deg, #1a1a2e, #16213e); }
-    .portfolio-thumb--2 { background: linear-gradient(135deg, #0d1b2a, #1b263b); }
-    .portfolio-thumb--3 { background: linear-gradient(135deg, #2d1b69, #1a0a3b); }
-    .portfolio-thumb--4 { background: linear-gradient(135deg, #003333, #004040); }
-    .portfolio-thumb--5 { background: linear-gradient(135deg, #1a0a00, #3d1a00); }
-    .portfolio-thumb--6 { background: linear-gradient(135deg, #0a1a0a, #1a2e1a); }
-    .portfolio-body { padding: 1.5rem; }
-    .portfolio-body h3 { font-size: 1.1rem; margin-bottom: 0.375rem; }
-    .portfolio-body p { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem; }
-    .portfolio-stats { display: flex; gap: 1rem; }
-    .p-stat { text-align: center; }
-    .p-stat__n { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--clr-primary); }
-    .p-stat__l { font-size: 0.7rem; color: var(--text-muted); }
-    .case-study-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-2xl);
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .before-after {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .ba-box {
-      background: var(--bg-glass);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1.25rem;
-      text-align: center;
-    }
-    .ba-box.after { border-color: rgba(0,212,170,0.4); background: rgba(0,212,170,0.05); }
-    @media (max-width: 900px) {
-      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
-      .case-study-card { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      .portfolio-grid { grid-template-columns: 1fr; }
-    }
+  .portfolio-filters {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+  }
+  .filter-btn {
+    padding: 0.6rem 1.35rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--border-mid);
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    cursor: pointer;
+    background: var(--bg-glass);
+  }
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--gradient-primary);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.25);
+  }
+  .case-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  .case-card {
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .case-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-accent);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  .case-header {
+    padding: 2rem 2rem 1.25rem 2rem;
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-glass);
+  }
+  .case-category {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--clr-primary-light);
+    margin-bottom: 0.5rem;
+  }
+  .case-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex-grow: 1;
+  }
+  .case-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+  }
+  .case-meta-title {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .case-meta-val {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .tech-tag {
+    padding: 0.3rem 0.65rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: var(--text-secondary);
+  }
+  .featured-deep-dive {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-2xl);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-deep-dive::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+  }
+  .architecture-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .arch-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 1rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+  }
+  .arch-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+  @media (max-width: 900px) {
+    .case-grid { grid-template-columns: 1fr; }
+    .featured-deep-dive { grid-template-columns: 1fr; padding: 2rem; }
+  }
 </style>
 @endsection
 
 @section('content')
-<!-- PAGE HERO -->
+  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="hero-bg"><div class="hero-grid"></div></div>
     <div class="container" style="position:relative;z-index:2">
-      <span class="badge badge--primary" style="margin-bottom:1.5rem">🏆 Our Work</span>
-      <h1>Projects That <span class="text-gradient">Changed Businesses</span></h1>
-      <p>Real work. Real clients. Real results. Browse our portfolio of impactful digital projects across industries.</p>
+      <span class="badge badge--primary" style="margin-bottom:1.5rem">🏗️ Systems in Production</span>
+      <h1>Engineered for <span class="text-gradient">Operational Reality</span></h1>
+      <p>A technical overview of proprietary platforms, custom business systems, and architectural solutions built by CypressIQ across East Africa and beyond.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem">
+        <a href="{{ route('trust') }}" class="btn btn--secondary btn--sm">⭐ View Client Testimonials &amp; Verified Track Record →</a>
+      </div>
     </div>
   </section>
 
-  <!-- PORTFOLIO GRID -->
+  <!-- CASE STUDIES GRID -->
   <section class="section">
     <div class="container">
       <div class="portfolio-filters reveal">
-        <button class="filter-btn active">All Projects</button>
-        <button class="filter-btn">Web Development</button>
-        <button class="filter-btn">SEO</button>
-        <button class="filter-btn">E-Commerce</button>
-        <button class="filter-btn">Branding</button>
-        <button class="filter-btn">ERP</button>
+        <button class="filter-btn active" onclick="window.filterCases('all', this)">All Deployments</button>
+        <button class="filter-btn" onclick="window.filterCases('products', this)">Proprietary Products</button>
+        <button class="filter-btn" onclick="window.filterCases('custom', this)">Custom Software &amp; APIs</button>
+        <button class="filter-btn" onclick="window.filterCases('transformation', this)">Digital Transformation</button>
       </div>
 
-      <div class="portfolio-grid stagger">
-        <div class="portfolio-item reveal">
-          <div class="portfolio-thumb portfolio-thumb--1">
-            <span class="emoji">🛍️</span>
+      <div class="case-grid">
+        <!-- CASE 1: OPERO ERP -->
+        <div class="case-card reveal" data-category="products">
+          <div class="case-header">
+            <div class="case-category">Product Deployment &bull; Operations</div>
+            <h3 style="font-size:1.35rem;margin-bottom:0.35rem">Opero Multi-Branch Retail &amp; Inventory Engine</h3>
+            <p style="color:var(--text-secondary);font-size:0.875rem">Centralized catalog synchronization, offline-capable POS, and multi-store financial tracking.</p>
           </div>
-          <div class="portfolio-body">
-            <span class="badge badge--primary" style="margin-bottom:0.75rem;font-size:0.65rem">E-Commerce</span>
-            <h3>ShopNest — E-Commerce Platform</h3>
-            <p>Full-stack e-commerce store with payment integration, inventory sync, and Cypressiq ERP backend.</p>
-            <div class="portfolio-stats">
-              <div class="p-stat"><div class="p-stat__n">+320%</div><div class="p-stat__l">Sales</div></div>
-              <div class="p-stat"><div class="p-stat__n">1.8s</div><div class="p-stat__l">Load Time</div></div>
-              <div class="p-stat"><div class="p-stat__n">6mo</div><div class="p-stat__l">ROI Payback</div></div>
+          <div class="case-body">
+            <div>
+              <h4 style="font-size:0.95rem;margin-bottom:0.4rem;color:var(--text-primary)">Operational Challenge</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                A multi-branch distribution business struggled with inventory discrepancies between physical retail stores and central warehouse storage. Point-of-sale terminals lacked offline resilience during intermittent network outages, causing manual paper log backups.
+              </p>
+            </div>
+            <div>
+              <h4 style="font-size:0.95rem;margin-bottom:0.4rem;color:var(--text-primary)">Engineering Solution</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                Deployed Opero with local-first offline caching, background queue synchronization when connectivity resumes, automated stock threshold triggers, and real-time branch shift reconciliation.
+              </p>
+            </div>
+            <div class="case-meta-grid">
+              <div>
+                <div class="case-meta-title">Deployment Scope</div>
+                <div class="case-meta-val">Multi-Store POS &amp; Inventory</div>
+              </div>
+              <div>
+                <div class="case-meta-title">Integrations</div>
+                <div class="case-meta-val">ESC/POS, Barcode, Ledger Export</div>
+              </div>
+            </div>
+            <div>
+              <div class="case-meta-title" style="margin-bottom:0.35rem">Technology Stack</div>
+              <div class="tech-tags">
+                <span class="tech-tag">Opero Core</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Redis Cache</span>
+                <span class="tech-tag">IndexedDB (Offline)</span>
+                <span class="tech-tag">WebSockets</span>
+              </div>
+            </div>
+            <div style="margin-top:auto;padding-top:1rem">
+              <a href="{{ route('opero') }}" class="btn btn--outline btn--sm w-full" style="text-align:center">Explore Opero Capabilities →</a>
             </div>
           </div>
         </div>
 
-        <div class="portfolio-item reveal">
-          <div class="portfolio-thumb portfolio-thumb--2">
-            <span class="emoji">🏥</span>
+        <!-- CASE 2: ITIKIA CAMPAIGN -->
+        <div class="case-card reveal" data-category="products">
+          <div class="case-header">
+            <div class="case-category">Product Deployment &bull; Civic Engagement</div>
+            <h3 style="font-size:1.35rem;margin-bottom:0.35rem">ITIKIA High-Concurrency Engagement Platform</h3>
+            <p style="color:var(--text-secondary);font-size:0.875rem">Public-facing engagement hub supporting thousands of concurrent visitors during announcements.</p>
           </div>
-          <div class="portfolio-body">
-            <span class="badge badge--accent" style="margin-bottom:0.75rem;font-size:0.65rem">Web + SEO</span>
-            <h3>MediCare+ — Health Portal</h3>
-            <p>Patient portal with online booking, SEO strategy, and 400% organic traffic growth in 8 months.</p>
-            <div class="portfolio-stats">
-              <div class="p-stat"><div class="p-stat__n">+400%</div><div class="p-stat__l">Organic Traffic</div></div>
-              <div class="p-stat"><div class="p-stat__n">#1</div><div class="p-stat__l">Local Search</div></div>
-              <div class="p-stat"><div class="p-stat__n">3,200</div><div class="p-stat__l">Monthly Leads</div></div>
+          <div class="case-body">
+            <div>
+              <h4 style="font-size:0.95rem;margin-bottom:0.4rem;color:var(--text-primary)">Operational Challenge</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                A public interest campaign required an authentic, secure digital headquarters to coordinate field volunteers, publish real-time newsroom releases, and distribute digital manifestos without crashing under live broadcast traffic spikes.
+              </p>
+            </div>
+            <div>
+              <h4 style="font-size:0.95rem;margin-bottom:0.4rem;color:var(--text-primary)">Engineering Solution</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                Configured ITIKIA Campaign with edge-cached content delivery, structured volunteer onboarding workflows, verified multi-channel donation integrations, and an administrative dashboard for field rally dispatch.
+              </p>
+            </div>
+            <div class="case-meta-grid">
+              <div>
+                <div class="case-meta-title">Deployment Scope</div>
+                <div class="case-meta-val">Engagement &amp; Field Coordination</div>
+              </div>
+              <div>
+                <div class="case-meta-title">Key Channels</div>
+                <div class="case-meta-val">Web Portal, SMS Gateway, USSD</div>
+              </div>
+            </div>
+            <div>
+              <div class="case-meta-title" style="margin-bottom:0.35rem">Technology Stack</div>
+              <div class="tech-tags">
+                <span class="tech-tag">ITIKIA Core</span>
+                <span class="tech-tag">Edge Caching</span>
+                <span class="tech-tag">Mobile Money API</span>
+                <span class="tech-tag">SMS Gateway</span>
+                <span class="tech-tag">Role-Based Auth</span>
+              </div>
+            </div>
+            <div style="margin-top:auto;padding-top:1rem">
+              <a href="{{ route('itikia') }}" class="btn btn--outline btn--sm w-full" style="text-align:center">Explore ITIKIA Campaign →</a>
             </div>
           </div>
         </div>
 
-        <div class="portfolio-item reveal">
-          <div class="portfolio-thumb portfolio-thumb--3">
-            <span class="emoji">🏗️</span>
+        <!-- CASE 3: FLEET & DISPATCH GATEWAY -->
+        <div class="case-card reveal" data-category="custom">
+          <div class="case-header">
+            <div class="case-category">Custom Engineering &bull; Logistics</div>
+            <h3 style="font-size:1.35rem;margin-bottom:0.35rem">Fleet Dispatch &amp; Route Telematics API</h3>
+            <p style="color:var(--text-secondary);font-size:0.875rem">Real-time driver assignment, digital proof-of-delivery, and automated status webhooks.</p>
           </div>
-          <div class="portfolio-body">
-            <span class="badge badge--warning" style="margin-bottom:0.75rem;font-size:0.65rem">ERP + Web</span>
-            <h3>BuildCorp — Enterprise ERP Setup</h3>
-            <p>Cypressiq ERP full deployment for a construction company — inventory, HR, and project financials.</p>
-            <div class="portfolio-stats">
-              <div class="p-stat"><div class="p-stat__n">-45%</div><div class="p-stat__l">Operations Cost</div></div>
-              <div class="p-stat"><div class="p-stat__n">3x</div><div class="p-stat__l">Efficiency</div></div>
-              <div class="p-stat"><div class="p-stat__n">6wk</div><div class="p-stat__l">Full Deployment</div></div>
+          <div class="case-body">
+            <div>
+              <h4 style="font-size:0.95rem;margin-bottom:0.4rem;color:var(--text-primary)">Operational Challenge</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                A regional freight and courier provider was coordinating 90+ transport vehicles through manual WhatsApp messages and paper delivery sheets, resulting in delayed milestone confirmations and lost consignment documentation.
+              </p>
+            </div>
+            <div>
+              <h4 style="font-size:0.95rem;margin-bottom:0.4rem;color:var(--text-primary)">Engineering Solution</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                Architected a progressive web application for drivers with geofence milestone tracking, digital recipient signatures, automated SMS delivery alerts, and bi-directional customer tracking webhooks.
+              </p>
+            </div>
+            <div class="case-meta-grid">
+              <div>
+                <div class="case-meta-title">Delivery Format</div>
+                <div class="case-meta-val">Driver PWA + Admin Console</div>
+              </div>
+              <div>
+                <div class="case-meta-title">Core Capability</div>
+                <div class="case-meta-val">Digital Proof-of-Delivery</div>
+              </div>
+            </div>
+            <div>
+              <div class="case-meta-title" style="margin-bottom:0.35rem">Technology Stack</div>
+              <div class="tech-tags">
+                <span class="tech-tag">RESTful API</span>
+                <span class="tech-tag">Progressive Web App</span>
+                <span class="tech-tag">PostGIS / Mapbox</span>
+                <span class="tech-tag">S3 Storage</span>
+                <span class="tech-tag">Redis Pub/Sub</span>
+              </div>
+            </div>
+            <div style="margin-top:auto;padding-top:1rem">
+              <a href="{{ route('solutions.custom-software') }}" class="btn btn--outline btn--sm w-full" style="text-align:center">Custom Software Capabilities →</a>
             </div>
           </div>
         </div>
 
-        <div class="portfolio-item reveal">
-          <div class="portfolio-thumb portfolio-thumb--4">
-            <span class="emoji">🎓</span>
+        <!-- CASE 4: RECONCILIATION ENGINE -->
+        <div class="case-card reveal" data-category="transformation">
+          <div class="case-header">
+            <div class="case-category">Digital Transformation &bull; Finance</div>
+            <h3 style="font-size:1.35rem;margin-bottom:0.35rem">Automated Multi-Bank Reconciliation Engine</h3>
+            <p style="color:var(--text-secondary);font-size:0.875rem">Replacing manual spreadsheet audits with automated bank statement ingestion and matching.</p>
           </div>
-          <div class="portfolio-body">
-            <span class="badge badge--primary" style="margin-bottom:0.75rem;font-size:0.65rem">Web Dev</span>
-            <h3>EduMax — Learning Management System</h3>
-            <p>Custom LMS with course management, student tracking, payments, and live video integration.</p>
-            <div class="portfolio-stats">
-              <div class="p-stat"><div class="p-stat__n">12k</div><div class="p-stat__l">Students</div></div>
-              <div class="p-stat"><div class="p-stat__n">98%</div><div class="p-stat__l">Uptime</div></div>
-              <div class="p-stat"><div class="p-stat__n">4wk</div><div class="p-stat__l">Build Time</div></div>
+          <div class="case-body">
+            <div>
+              <h4 style="font-size:0.95rem;margin-bottom:0.4rem;color:var(--text-primary)">Operational Challenge</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                A B2B enterprise processed hundreds of invoice settlements per week across three commercial banks and two mobile money merchants. Staff spent 10+ days per month manually cross-referencing paper bank printouts with internal ledger entries.
+              </p>
             </div>
-          </div>
-        </div>
-
-        <div class="portfolio-item reveal">
-          <div class="portfolio-thumb portfolio-thumb--5">
-            <span class="emoji">💊</span>
-          </div>
-          <div class="portfolio-body">
-            <span class="badge badge--accent" style="margin-bottom:0.75rem;font-size:0.65rem">PPC + SEO</span>
-            <h3>PharmaLink — Digital Marketing</h3>
-            <p>Combined PPC + SEO strategy delivering 6.2x ROAS and dominating competitor keywords.</p>
-            <div class="portfolio-stats">
-              <div class="p-stat"><div class="p-stat__n">6.2x</div><div class="p-stat__l">ROAS</div></div>
-              <div class="p-stat"><div class="p-stat__n">-38%</div><div class="p-stat__l">CPA</div></div>
-              <div class="p-stat"><div class="p-stat__n">$2.1M</div><div class="p-stat__l">Revenue Added</div></div>
+            <div>
+              <h4 style="font-size:0.95rem;margin-bottom:0.4rem;color:var(--text-primary)">Engineering Solution</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                Engineered an asynchronous matching pipeline that parses MT940 and CSV banking feeds, validates reference algorithms against active invoices, surfaces discrepancies in an exception dashboard, and writes reconciled journal entries directly into the accounting system.
+              </p>
             </div>
-          </div>
-        </div>
-
-        <div class="portfolio-item reveal">
-          <div class="portfolio-thumb portfolio-thumb--6">
-            <span class="emoji">🚚</span>
-          </div>
-          <div class="portfolio-body">
-            <span class="badge badge--warning" style="margin-bottom:0.75rem;font-size:0.65rem">Branding + Web</span>
-            <h3>LogiTrans — Brand Identity & Website</h3>
-            <p>Complete brand overhaul — logo, identity system, corporate website, and social media kit.</p>
-            <div class="portfolio-stats">
-              <div class="p-stat"><div class="p-stat__n">+180%</div><div class="p-stat__l">Brand Recall</div></div>
-              <div class="p-stat"><div class="p-stat__n">2wk</div><div class="p-stat__l">Delivery</div></div>
-              <div class="p-stat"><div class="p-stat__n">★4.9</div><div class="p-stat__l">Client Rating</div></div>
+            <div class="case-meta-grid">
+              <div>
+                <div class="case-meta-title">Transformation Scope</div>
+                <div class="case-meta-val">Spreadsheet to Automated Ingestion</div>
+              </div>
+              <div>
+                <div class="case-meta-title">Auditability</div>
+                <div class="case-meta-val">Full Cryptographic Audit Trail</div>
+              </div>
+            </div>
+            <div>
+              <div class="case-meta-title" style="margin-bottom:0.35rem">Technology Stack</div>
+              <div class="tech-tags">
+                <span class="tech-tag">PHP / Laravel</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Queue Workers</span>
+                <span class="tech-tag">Audit Trail Engine</span>
+                <span class="tech-tag">CSV / MT940 Parser</span>
+              </div>
+            </div>
+            <div style="margin-top:auto;padding-top:1rem">
+              <a href="{{ route('solutions.technology-consulting') }}" class="btn btn--outline btn--sm w-full" style="text-align:center">Digital Transformation Roadmap →</a>
             </div>
           </div>
         </div>
@@ -227,53 +362,68 @@
     </div>
   </section>
 
-  <!-- FEATURED CASE STUDY -->
+  <!-- FEATURED ARCHITECTURE DEEP DIVE -->
   <section class="section" style="background:var(--bg-surface)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="badge badge--accent">📊 Case Study</span>
-        <h2>From Invisible to <span class="text-gradient">Industry Leader</span></h2>
-        <p>How we helped RetailPro Ghana grow from $50K to $2M/year in revenue in under 18 months.</p>
+        <span class="badge badge--accent">Architecture Deep Dive</span>
+        <h2>How We Engineer <span class="text-gradient">For Reliability</span></h2>
+        <p>Software designed for real-world bandwidth constraints, operational stress, and verifiable data integrity.</p>
       </div>
 
-      <div class="case-study-card reveal">
+      <div class="featured-deep-dive reveal">
         <div>
-          <h3 style="font-size:1.5rem;margin-bottom:0.75rem">The Challenge</h3>
-          <p style="color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.8">RetailPro was a promising retail chain with zero digital presence. No website, no SEO strategy, and a completely manual inventory and sales process costing them hours every day and thousands in lost revenue.</p>
-
-          <h3 style="font-size:1.5rem;margin-bottom:0.75rem">Our Solution</h3>
-          <ul style="display:flex;flex-direction:column;gap:0.5rem;color:var(--text-secondary)">
-            <li style="display:flex;gap:0.5rem"><span style="color:var(--clr-accent)">→</span>Built e-commerce website with integrated Cypressiq ERP backend</li>
-            <li style="display:flex;gap:0.5rem"><span style="color:var(--clr-accent)">→</span>Implemented full SEO strategy targeting 200+ keywords</li>
-            <li style="display:flex;gap:0.5rem"><span style="color:var(--clr-accent)">→</span>Launched Google & Meta ad campaigns</li>
-            <li style="display:flex;gap:0.5rem"><span style="color:var(--clr-accent)">→</span>Complete social media management takeover</li>
-            <li style="display:flex;gap:0.5rem"><span style="color:var(--clr-accent)">→</span>Deployed Cypressiq ERP for inventory, POS &amp; HR</li>
-          </ul>
+          <h3 style="font-size:1.5rem;margin-bottom:1rem">The CypressIQ Systems Blueprint</h3>
+          <p style="color:var(--text-secondary);margin-bottom:1.5rem;line-height:1.8">
+            Every digital platform or custom software solution we build follows a foundational architecture that balances performance, ease of maintenance, and institutional longevity.
+          </p>
+          <div class="architecture-stack">
+            <div class="arch-item">
+              <div class="arch-icon">⚡</div>
+              <div>
+                <strong style="color:var(--text-primary);display:block;font-size:0.95rem">Resilient Data Storage &amp; Integrity</strong>
+                <span style="color:var(--text-secondary);font-size:0.85rem">ACID-compliant relational databases, strict schema migrations, and automated multi-region snapshot backups.</span>
+              </div>
+            </div>
+            <div class="arch-item">
+              <div class="arch-icon">🔌</div>
+              <div>
+                <strong style="color:var(--text-primary);display:block;font-size:0.95rem">API-First System Interoperability</strong>
+                <span style="color:var(--text-secondary);font-size:0.85rem">Strict OpenAPI specifications, tokenized authentication, and webhooks that allow clean integration with external accounting, ERP, or payment systems.</span>
+              </div>
+            </div>
+            <div class="arch-item">
+              <div class="arch-icon">🛡️</div>
+              <div>
+                <strong style="color:var(--text-primary);display:block;font-size:0.95rem">Granular Role-Based Access Controls</strong>
+                <span style="color:var(--text-secondary);font-size:0.85rem">Multi-tenant isolation, precise permissions per staff tier, and immutable audit logs on sensitive financial actions.</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div>
-          <h3 style="font-size:1.25rem;margin-bottom:1rem">Before vs After — 18 Months</h3>
-          <div class="before-after">
-            <div class="ba-box">
-              <div style="font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.75rem">Before</div>
-              <div style="font-size:1.5rem;font-weight:800;color:var(--text-muted)">$50K</div>
-              <div style="font-size:0.75rem;color:var(--text-muted)">Annual Revenue</div>
-              <hr style="border-color:var(--border-subtle);margin:0.75rem 0">
-              <div style="font-size:1.25rem;font-weight:700;color:var(--text-muted)">200</div>
-              <div style="font-size:0.75rem;color:var(--text-muted)">Monthly Visitors</div>
-              <hr style="border-color:var(--border-subtle);margin:0.75rem 0">
-              <div style="font-size:1.25rem;font-weight:700;color:var(--text-muted)">0</div>
-              <div style="font-size:0.75rem;color:var(--text-muted)">Online Orders</div>
-            </div>
-            <div class="ba-box after">
-              <div style="font-size:0.7rem;color:var(--clr-accent);text-transform:uppercase;margin-bottom:0.75rem">After ✓</div>
-              <div style="font-size:1.5rem;font-weight:800;color:var(--clr-accent)">$2M</div>
-              <div style="font-size:0.75rem;color:var(--text-secondary)">Annual Revenue</div>
-              <hr style="border-color:rgba(0,212,170,0.2);margin:0.75rem 0">
-              <div style="font-size:1.25rem;font-weight:700;color:var(--clr-accent)">68K</div>
-              <div style="font-size:0.75rem;color:var(--text-secondary)">Monthly Visitors</div>
-              <hr style="border-color:rgba(0,212,170,0.2);margin:0.75rem 0">
-              <div style="font-size:1.25rem;font-weight:700;color:var(--clr-accent)">1,200</div>
-              <div style="font-size:0.75rem;color:var(--text-secondary)">Monthly Orders</div>
+          <div style="background:var(--bg-glass);border:1px solid var(--border-subtle);border-radius:var(--radius-xl);padding:2rem">
+            <h4 style="font-size:1.1rem;margin-bottom:1rem;color:var(--clr-primary-light)">Engineering Guarantees</h4>
+            <ul style="display:flex;flex-direction:column;gap:0.85rem;color:var(--text-secondary);font-size:0.875rem">
+              <li style="display:flex;gap:0.75rem">
+                <span style="color:var(--clr-accent)">✓</span>
+                <span><strong>Zero Vendor Trap:</strong> Clean, well-documented source code and database migrations belonging to your organization.</span>
+              </li>
+              <li style="display:flex;gap:0.75rem">
+                <span style="color:var(--clr-accent)">✓</span>
+                <span><strong>Offline-Aware Architecture:</strong> Critical workflows engineered to prevent data loss during network hiccups.</span>
+              </li>
+              <li style="display:flex;gap:0.75rem">
+                <span style="color:var(--clr-accent)">✓</span>
+                <span><strong>Security by Design:</strong> Throttled endpoints, CSRF defenses, parameter sanitization, and encrypted credential storage.</span>
+              </li>
+              <li style="display:flex;gap:0.75rem">
+                <span style="color:var(--clr-accent)">✓</span>
+                <span><strong>Direct Technical Ownership:</strong> Senior software engineers build and review your codebase from day one.</span>
+              </li>
+            </ul>
+            <div style="margin-top:2rem">
+              <a href="{{ route('contact') }}" class="btn btn--primary w-full" style="text-align:center">Consult with Our Architects →</a>
             </div>
           </div>
         </div>
@@ -285,12 +435,28 @@
   <section class="section-sm">
     <div class="container">
       <div class="cta-section reveal">
-        <h2>Your Success Story Starts Here</h2>
-        <p>Join 500+ businesses that chose Cypressiq to grow their brands.</p>
-        <a href="{{ route('contact') }}" class="btn btn--light btn--lg">Start Your Project Today 🚀</a>
+        <h2>Have a System That Needs to Be Built or Fixed?</h2>
+        <p>Speak directly with our technical team to discuss requirements, architecture, and realistic project timelines.</p>
+        <a href="{{ route('contact') }}" class="btn btn--light btn--lg">Schedule a Technical Call →</a>
       </div>
     </div>
   </section>
+@endsection
 
-  <!-- FOOTER -->
+@section('scripts')
+<script>
+  window.filterCases = function(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.case-card');
+    cards.forEach(card => {
+      if (category === 'all' || card.getAttribute('data-category') === category) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  };
+</script>
 @endsection

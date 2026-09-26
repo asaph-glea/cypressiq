@@ -1,239 +1,320 @@
 @extends('layouts.app')
-@section('title', 'About Us — Our Story, Mission & Team')
+@section('title', 'About CypressIQ — Technology Company & Product Studio')
 
 @section('css')
 <style>
-.timeline { position: relative; padding: 2rem 0; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--gradient-primary);
-      transform: translateX(-50%);
-    }
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 2rem;
-      align-items: center;
-      margin-bottom: 3rem;
-    }
-    .timeline-item:nth-child(even) .timeline-content { grid-column: 3; text-align: left; }
-    .timeline-item:nth-child(even) .timeline-empty { grid-column: 1; }
-    .timeline-item:nth-child(odd) .timeline-content { text-align: right; }
-    .timeline-dot {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      box-shadow: 0 0 0 4px var(--bg-base), 0 0 0 6px rgba(108,99,255,0.3);
-      z-index: 1;
-    }
-    .timeline-year { font-family: var(--font-mono); font-size: 0.75rem; color: var(--clr-primary); font-weight: 600; margin-bottom: 0.5rem; }
-    .team-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    .team-card:hover { transform: translateY(-6px); border-color: var(--border-accent); }
-    .team-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin: 0 auto 1.25rem;
-      box-shadow: var(--shadow-primary);
-    }
-    .team-social { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
-    .team-social a {
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--bg-glass-strong);
-      border: 1px solid var(--border-subtle);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; color: var(--text-secondary);
-      transition: all 0.2s;
-    }
-    .team-social a:hover { background: var(--clr-primary); color: white; border-color: transparent; }
-    @media (max-width: 768px) {
-      .timeline::before { left: 24px; }
-      .timeline-item { grid-template-columns: auto 1fr; }
-      .timeline-item:nth-child(even) .timeline-content { grid-column: 2; }
-      .timeline-item:nth-child(even) .timeline-empty, .timeline-empty { display: none; }
-      .timeline-item:nth-child(odd) .timeline-content { text-align: left; }
-    }
+  .evolution-track {
+    position: relative;
+    padding: 2rem 0;
+  }
+  .evolution-track::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gradient-primary);
+    transform: translateX(-50%);
+  }
+  .evolution-step {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 3.5rem;
+  }
+  .evolution-step:nth-child(even) .step-content {
+    grid-column: 3;
+    text-align: left;
+  }
+  .evolution-step:nth-child(even) .step-empty {
+    grid-column: 1;
+  }
+  .evolution-step:nth-child(odd) .step-content {
+    text-align: right;
+  }
+  .step-node {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--clr-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    box-shadow: 0 0 20px rgba(108, 99, 255, 0.3);
+    z-index: 1;
+  }
+  .step-phase {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--clr-primary-light);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+  .step-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+  }
+  .principle-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 2.25rem;
+    transition: all 0.3s;
+  }
+  .principle-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-accent);
+  }
+  .discipline-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    text-align: center;
+  }
+  .discipline-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin: 0 auto 1.25rem;
+  }
+  @media (max-width: 768px) {
+    .evolution-track::before { left: 26px; }
+    .evolution-step { grid-template-columns: auto 1fr; gap: 1.5rem; }
+    .evolution-step:nth-child(even) .step-content { grid-column: 2; }
+    .evolution-step:nth-child(even) .step-empty, .step-empty { display: none; }
+    .evolution-step:nth-child(odd) .step-content { text-align: left; }
+  }
 </style>
 @endsection
 
 @section('content')
-<!-- PAGE HERO -->
+  <!-- PAGE HERO -->
   <section class="page-hero">
     <div class="hero-bg"><div class="hero-grid"></div></div>
     <div class="container" style="position:relative;z-index:2">
-      <span class="badge badge--primary" style="margin-bottom:1.5rem">🌍 About Us</span>
-      <h1>Built by Builders,<br/><span class="text-gradient">For Builders</span></h1>
-      <p>We're a team of strategists, developers, designers, and data nerds united by one mission: making African businesses compete — and win — on a global stage.</p>
+      <span class="badge badge--primary" style="margin-bottom:1.5rem">⚙️ Who We Are</span>
+      <h1>Technology Built for <span class="text-gradient">Organizations in Motion</span></h1>
+      <p>CypressIQ is a technology company and product studio based in East Africa. We develop proprietary software products, engineer custom business systems, and guide digital transformation.</p>
     </div>
   </section>
 
-  <!-- MISSION & VISION -->
+  <!-- PURPOSE & IDENTITY -->
   <section class="section">
     <div class="container">
-      <div class="grid grid-2 stagger" style="max-width:900px;margin:0 auto;gap:1.5rem">
-        <div class="card reveal" style="padding:2.5rem;background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(108,99,255,0.05));border-color:rgba(108,99,255,0.3)">
-          <div style="font-size:3rem;margin-bottom:1rem">🎯</div>
-          <h3 style="font-size:1.5rem;margin-bottom:0.75rem">Our Mission</h3>
-          <p style="color:var(--text-secondary);line-height:1.8">To empower businesses with world-class digital tools, strategies, and systems that create sustainable, compounding growth — starting from Africa and reaching every corner of the world.</p>
+      <div class="grid grid-2 stagger" style="max-width:1050px;margin:0 auto;gap:2rem">
+        <div class="card reveal" style="padding:2.75rem;background:linear-gradient(135deg,rgba(108,99,255,0.08),rgba(108,99,255,0.02));border-color:rgba(108,99,255,0.25)">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🎯</div>
+          <h3 style="font-size:1.4rem;margin-bottom:0.75rem">Our Core Purpose</h3>
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:0.95rem">
+            Organizations across East Africa face fragmented workflows: critical operational records scattered across WhatsApp threads, paper receipts, and unlinked spreadsheets. Our purpose is to engineer cohesive, resilient software that brings clarity, speed, and governance to daily operations.
+          </p>
         </div>
-        <div class="card reveal" style="padding:2.5rem;background:linear-gradient(135deg,rgba(0,212,170,0.1),rgba(0,212,170,0.05));border-color:rgba(0,212,170,0.3)">
-          <div style="font-size:3rem;margin-bottom:1rem">🚀</div>
-          <h3 style="font-size:1.5rem;margin-bottom:0.75rem">Our Vision</h3>
-          <p style="color:var(--text-secondary);line-height:1.8">A world where every business — regardless of size or location — has access to the same world-class digital infrastructure, ERP systems, and marketing strategies that power billion-dollar companies.</p>
+        <div class="card reveal" style="padding:2.75rem;background:linear-gradient(135deg,rgba(0,212,170,0.08),rgba(0,212,170,0.02));border-color:rgba(0,212,170,0.25)">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🏛️</div>
+          <h3 style="font-size:1.4rem;margin-bottom:0.75rem">Product &amp; Systems Studio</h3>
+          <p style="color:var(--text-secondary);line-height:1.8;font-size:0.95rem">
+            We are not a marketing agency. We do not sell superficial advertising packages. We are a software engineering organization. We design, deploy, and maintain platforms that handle real financial transactions, multi-branch stock reconciliation, and high-volume public engagement.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- OUR STORY TIMELINE -->
+  <!-- THE THREE PILLARS (OVERVIEW) -->
   <section class="section" style="background:var(--bg-surface)">
     <div class="container">
       <div class="section-header reveal">
-        <span class="badge badge--accent">📖 Our Story</span>
-        <h2>From a Laptop to <span class="text-gradient">500+ Clients</span></h2>
+        <span class="badge badge--accent">CypressIQ Architecture</span>
+        <h2>How We <span class="text-gradient">Deliver Value</span></h2>
+        <p>Three complementary pillars designed to meet organizations wherever they are in their digital lifecycle.</p>
       </div>
 
-      <div class="timeline" style="max-width:800px;margin:0 auto">
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-year">2019</div>
-            <h4 style="margin-bottom:0.5rem">The Beginning</h4>
-            <p style="color:var(--text-secondary);font-size:0.9rem">Founded in Accra with a laptop and a bold vision: to bring Silicon Valley-quality digital services to African businesses at fair prices.</p>
-          </div>
-          <div class="timeline-dot">🌱</div>
-          <div class="timeline-empty"></div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-empty"></div>
-          <div class="timeline-dot">📈</div>
-          <div class="timeline-content">
-            <div class="timeline-year">2020</div>
-            <h4 style="margin-bottom:0.5rem">First 50 Clients</h4>
-            <p style="color:var(--text-secondary);font-size:0.9rem">Grew to a team of 8, serving 50+ businesses across Ghana, Nigeria, and Kenya. Web development became our flagship service.</p>
+      <div class="grid grid-3 stagger">
+        <div class="principle-card reveal">
+          <div style="font-size:2rem;margin-bottom:1rem">📦</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">1. Proprietary Digital Products</h3>
+          <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.7;margin-bottom:1.25rem">
+            Turnkey software platforms developed and continuously maintained in-house. <strong>Opero</strong> powers unified multi-branch commerce, inventory, HR, and accounting. <strong>ITIKIA Campaign</strong> drives public advocacy, volunteer mobilization, and verified funding.
+          </p>
+          <div style="display:flex;gap:0.5rem">
+            <a href="{{ route('opero') }}" class="btn btn--outline btn--sm">Opero →</a>
+            <a href="{{ route('itikia') }}" class="btn btn--outline btn--sm">ITIKIA →</a>
           </div>
         </div>
 
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-year">2022</div>
-            <h4 style="margin-bottom:0.5rem">Cypressiq ERP is Born</h4>
-            <p style="color:var(--text-secondary);font-size:0.9rem">After seeing how many clients struggled with business management, we built Cypressiq ERP — a Laravel-powered solution purpose-built for growing SMEs.</p>
-          </div>
-          <div class="timeline-dot">⚙️</div>
-          <div class="timeline-empty"></div>
+        <div class="principle-card reveal">
+          <div style="font-size:2rem;margin-bottom:1rem">💻</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">2. Custom Technology Engineering</h3>
+          <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.7;margin-bottom:1.25rem">
+            For operational requirements that off-the-shelf software cannot satisfy. We engineer tailor-made web applications, enterprise portals, API bridges, mobile money integrations, and specialized database architectures.
+          </p>
+          <a href="{{ route('solutions.custom-software') }}" class="btn btn--outline btn--sm">Custom Engineering →</a>
         </div>
 
-        <div class="timeline-item reveal">
-          <div class="timeline-empty"></div>
-          <div class="timeline-dot">🌍</div>
-          <div class="timeline-content">
-            <div class="timeline-year">2024</div>
-            <h4 style="margin-bottom:0.5rem">Going Global</h4>
-            <p style="color:var(--text-secondary);font-size:0.9rem">Expanded services to 15 countries. Launched Cypressiq ERP SaaS with 200+ active business subscribers and growing.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-content">
-            <div class="timeline-year">2026</div>
-            <h4 style="margin-bottom:0.5rem">The New Standard</h4>
-            <p style="color:var(--text-secondary);font-size:0.9rem">500+ clients served, Cypressiq ERP v3.0 launched on Laravel 11, and a team of 45+ specialists delivering world-class digital growth.</p>
-          </div>
-          <div class="timeline-dot">⚡</div>
-          <div class="timeline-empty"></div>
+        <div class="principle-card reveal">
+          <div style="font-size:2rem;margin-bottom:1rem">🔄</div>
+          <h3 style="font-size:1.2rem;margin-bottom:0.5rem">3. Digital Transformation Practice</h3>
+          <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.7;margin-bottom:1.25rem">
+            Guiding established organizations as they transition from paper records and legacy silos into connected digital operations. We conduct audits, plan data migration, train teams, and implement sustainable governance.
+          </p>
+          <a href="{{ route('solutions.technology-consulting') }}" class="btn btn--outline btn--sm">Transformation Roadmap →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TEAM -->
+  <!-- EVOLUTION TIMELINE -->
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
-        <span class="badge badge--primary">👥 The Team</span>
-        <h2>Meet the People <span class="text-gradient">Behind the Results</span></h2>
-        <p>Our team of 45+ specialists brings together decades of combined expertise across digital marketing, engineering, and business strategy.</p>
+        <span class="badge badge--primary">Our Trajectory</span>
+        <h2>The Evolution of <span class="text-gradient">CypressIQ</span></h2>
+        <p>From custom software projects to an integrated technology company and product studio.</p>
+      </div>
+
+      <div class="evolution-track" style="max-width:860px;margin:0 auto">
+        <div class="evolution-step reveal">
+          <div class="step-content">
+            <div class="step-card">
+              <div class="step-phase">FOUNDATION &bull; 2021</div>
+              <h4 style="margin-bottom:0.5rem">Bespoke Software &amp; Systems Engineering</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                Began by building custom web applications and bespoke internal systems for commercial enterprises in East Africa, mastering database scalability, offline resilience, and localized payment rails.
+              </p>
+            </div>
+          </div>
+          <div class="step-node">🌱</div>
+          <div class="step-empty"></div>
+        </div>
+
+        <div class="evolution-step reveal">
+          <div class="step-empty"></div>
+          <div class="step-node">⚙️</div>
+          <div class="step-content">
+            <div class="step-card">
+              <div class="step-phase">INCEPTION &bull; 2023</div>
+              <h4 style="margin-bottom:0.5rem">Recognizing Operational Gaps: Opero Platform</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                Noticed that multi-location enterprises struggled with heavy, unlocalized enterprise ERPs. We architected Opero as a modular business management engine covering POS, inventory, HR, payroll, and financials tailored for regional commerce.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="evolution-step reveal">
+          <div class="step-content">
+            <div class="step-card">
+              <div class="step-phase">CIVIC ENGAGEMENT &bull; 2024</div>
+              <h4 style="margin-bottom:0.5rem">Public Mobilization: ITIKIA Campaign</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                Recognized that public campaigns and civic organizations lacked professionalized digital machinery. Engineered ITIKIA Campaign to unite real-time event mapping, volunteer dispatch, policy manifestos, and multi-channel funding.
+              </p>
+            </div>
+          </div>
+          <div class="step-node">📣</div>
+          <div class="step-empty"></div>
+        </div>
+
+        <div class="evolution-step reveal">
+          <div class="step-empty"></div>
+          <div class="step-node">⚡</div>
+          <div class="step-content">
+            <div class="step-card">
+              <div class="step-phase">PRESENT &bull; 2026</div>
+              <h4 style="margin-bottom:0.5rem">Unified Technology Studio</h4>
+              <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.6">
+                Operating as a complete technology partner: powering businesses through proprietary products, engineering custom systems, and leading comprehensive digital modernization across East Africa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENGINEERING PHILOSOPHY -->
+  <section id="philosophy" class="section" style="background:var(--bg-surface)">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge badge--accent">Engineering Culture</span>
+        <h2>Principles That Guide <span class="text-gradient">Every Line of Code</span></h2>
+      </div>
+
+      <div class="grid grid-2 stagger" style="max-width:1050px;margin:0 auto;gap:1.5rem">
+        <div class="principle-card reveal">
+          <h4 style="font-size:1.15rem;margin-bottom:0.5rem;color:var(--clr-primary-light)">1. Reality-First Engineering</h4>
+          <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.7">
+            We build software for real-world operating conditions: intermittent connectivity, varying device capabilities, and diverse user digital literacy. Systems must be fault-tolerant and intuitive, not fragile.
+          </p>
+        </div>
+
+        <div class="principle-card reveal">
+          <h4 style="font-size:1.15rem;margin-bottom:0.5rem;color:var(--clr-accent)">2. Open Standards &amp; Interoperability</h4>
+          <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.7">
+            We do not create closed walled gardens. We build with clean relational database schemas, standard REST APIs, and automated backup routines so your organization maintains full sovereignty over its data.
+          </p>
+        </div>
+
+        <div class="principle-card reveal">
+          <h4 style="font-size:1.15rem;margin-bottom:0.5rem;color:var(--clr-warning)">3. Direct Engineer-to-Client Access</h4>
+          <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.7">
+            We eliminate layers of account executives and non-technical intermediaries. When you collaborate with CypressIQ, you communicate directly with software engineers and systems architects who build and maintain the solution.
+          </p>
+        </div>
+
+        <div class="principle-card reveal">
+          <h4 style="font-size:1.15rem;margin-bottom:0.5rem;color:var(--clr-primary-light)">4. Long-Term Maintainability</h4>
+          <p style="color:var(--text-secondary);font-size:0.875rem;line-height:1.7">
+            We prioritize readable, maintainable, and well-tested code over obscure shortcuts. Systems are architected so that future engineers, internal IT staff, and third-party auditors can easily understand and extend them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCTIONAL DISCIPLINES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="badge badge--primary">Our Disciplines</span>
+        <h2>Engineering &amp; Delivery <span class="text-gradient">Capabilities</span></h2>
+        <p>Our multidisciplinary team covers the complete software product lifecycle.</p>
       </div>
 
       <div class="grid grid-4 stagger">
-        <div class="team-card reveal">
-          <div class="team-avatar">👨🏾‍💼</div>
-          <h4 style="margin-bottom:0.25rem">Kwame Asante</h4>
-          <p style="color:var(--clr-primary);font-size:0.8rem;font-weight:600">CEO & Founder</p>
-          <p style="color:var(--text-secondary);font-size:0.8rem;margin-top:0.5rem">Digital strategy visionary with 10+ years building brands across Africa.</p>
-          <div class="team-social"><a href="#">in</a><a href="#">𝕏</a></div>
+        <div class="discipline-card reveal">
+          <div class="discipline-icon">📐</div>
+          <h4 style="margin-bottom:0.35rem">Systems Architecture</h4>
+          <p style="color:var(--text-secondary);font-size:0.8rem;line-height:1.6">Database modeling, schema design, API contract definition, and system security boundaries.</p>
         </div>
-        <div class="team-card reveal">
-          <div class="team-avatar">👩🏾‍💻</div>
-          <h4 style="margin-bottom:0.25rem">Adaeze Obi</h4>
-          <p style="color:var(--clr-accent);font-size:0.8rem;font-weight:600">CTO & Lead Dev</p>
-          <p style="color:var(--text-secondary);font-size:0.8rem;margin-top:0.5rem">Laravel architect and the brain behind Cypressiq ERP's technical foundation.</p>
-          <div class="team-social"><a href="#">in</a><a href="#">🐙</a></div>
+        <div class="discipline-card reveal">
+          <div class="discipline-icon">💻</div>
+          <h4 style="margin-bottom:0.35rem">Full-Stack Development</h4>
+          <p style="color:var(--text-secondary);font-size:0.8rem;line-height:1.6">High-performance web applications, responsive customer portals, and asynchronous queue workers.</p>
         </div>
-        <div class="team-card reveal">
-          <div class="team-avatar">👨🏽‍🎨</div>
-          <h4 style="margin-bottom:0.25rem">Emeka Nwosu</h4>
-          <p style="color:var(--clr-warning);font-size:0.8rem;font-weight:600">Creative Director</p>
-          <p style="color:var(--text-secondary);font-size:0.8rem;margin-top:0.5rem">Award-winning designer crafting brand identities that stand the test of time.</p>
-          <div class="team-social"><a href="#">in</a><a href="#">🎨</a></div>
+        <div class="discipline-card reveal">
+          <div class="discipline-icon">☁️</div>
+          <h4 style="margin-bottom:0.35rem">Cloud &amp; DevOps</h4>
+          <p style="color:var(--text-secondary);font-size:0.8rem;line-height:1.6">Automated deployment pipelines, server monitoring, edge caching, and automated disaster recovery.</p>
         </div>
-        <div class="team-card reveal">
-          <div class="team-avatar">👩🏾‍📊</div>
-          <h4 style="margin-bottom:0.25rem">Fatima Al-Rashid</h4>
-          <p style="color:var(--clr-primary);font-size:0.8rem;font-weight:600">Head of Growth</p>
-          <p style="color:var(--text-secondary);font-size:0.8rem;margin-top:0.5rem">Data-driven growth strategist who has managed $5M+ in ad spend for clients.</p>
-          <div class="team-social"><a href="#">in</a><a href="#">𝕏</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- VALUES -->
-  <section class="section" style="background:var(--bg-surface)">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="badge badge--accent">💎 Core Values</span>
-        <h2>What We <span class="text-gradient">Stand For</span></h2>
-      </div>
-      <div class="grid grid-3 stagger">
-        <div class="card reveal" style="text-align:center">
-          <div style="font-size:2.5rem;margin-bottom:1rem">🎯</div>
-          <h3 style="margin-bottom:0.5rem">Results Over Vanity</h3>
-          <p style="color:var(--text-secondary);font-size:0.9rem">We measure success by your business outcomes, not engagement metrics. Revenue, growth, and ROI — that's what we're after.</p>
-        </div>
-        <div class="card reveal" style="text-align:center">
-          <div style="font-size:2.5rem;margin-bottom:1rem">🤝</div>
-          <h3 style="margin-bottom:0.5rem">Radical Transparency</h3>
-          <p style="color:var(--text-secondary);font-size:0.9rem">No smoke and mirrors. You get full visibility into strategy, spending, and results. We share what's working and what isn't, always.</p>
-        </div>
-        <div class="card reveal" style="text-align:center">
-          <div style="font-size:2.5rem;margin-bottom:1rem">🌍</div>
-          <h3 style="margin-bottom:0.5rem">Built for Africa</h3>
-          <p style="color:var(--text-secondary);font-size:0.9rem">We understand the African market deeply — its nuances, opportunities, and unique challenges — and we build strategies that match.</p>
+        <div class="discipline-card reveal">
+          <div class="discipline-icon">🤝</div>
+          <h4 style="margin-bottom:0.35rem">Implementation &amp; SLA</h4>
+          <p style="color:var(--text-secondary);font-size:0.8rem;line-height:1.6">On-site deployment, staff training, data migration from legacy spreadsheets, and continuous hypercare.</p>
         </div>
       </div>
     </div>
@@ -243,12 +324,10 @@
   <section class="section-sm">
     <div class="container">
       <div class="cta-section reveal">
-        <h2>Let's Build Something Great Together</h2>
-        <p>Book a free strategy call and meet the team that will grow your business.</p>
-        <a href="{{ route('contact') }}" class="btn btn--light btn--lg">Schedule a Free Call 🤝</a>
+        <h2>Partner with a Genuine Technology Team</h2>
+        <p>Let's discuss how our digital products or custom engineering can bring order and scale to your operations.</p>
+        <a href="{{ route('contact') }}" class="btn btn--light btn--lg">Talk to an Engineer →</a>
       </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
 @endsection

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgAmos" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <radialGradient id="haloAmos" cx="50%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="rgba(139,92,246,0.25)"/>
+      <stop offset="100%" stop-color="rgba(17,24,39,0)"/>
+    </radialGradient>
+    <pattern id="gridAmos" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(255,255,255,0.035)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgAmos)"/>
+  <rect width="800" height="450" fill="url(#haloAmos)"/>
+  <rect width="800" height="450" fill="url(#gridAmos)"/>
+
+  <!-- Window Container -->
+  <g transform="translate(100, 45)">
+    <rect width="600" height="360" rx="16" fill="#0f172a" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+    <rect width="600" height="42" rx="16" fill="#1e293b"/>
+    <path d="M 0 42 L 600 42" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <circle cx="24" cy="21" r="5" fill="#ef4444"/>
+    <circle cx="42" cy="21" r="5" fill="#f59e0b"/>
+    <circle cx="60" cy="21" r="5" fill="#10b981"/>
+    <rect x="90" y="10" width="360" height="22" rx="6" fill="rgba(0,0,0,0.3)"/>
+    <text x="105" y="25" fill="#94a3b8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11">https://amoskaroki.com</text>
+
+    <!-- Executive Branding Content -->
+    <rect x="25" y="65" width="550" height="135" rx="10" fill="rgba(139,92,246,0.12)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+    <text x="45" y="105" fill="#f8fafc" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="22" font-weight="800">AMOS KAROKI</text>
+    <text x="45" y="130" fill="#a78bfa" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="600">Executive Advisory • Author • Global Keynote Speaker</text>
+    <text x="45" y="155" fill="#cbd5e1" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11">Strategic Leadership Architecture &amp; Corporate Advisory Intake</text>
+
+    <!-- Advisory Pillars -->
+    <g transform="translate(25, 220)">
+      <rect width="170" height="110" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.06)"/>
+      <text x="20" y="35" fill="#f59e0b" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="16">★</text>
+      <text x="20" y="60" fill="#f8fafc" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="bold">Keynote Booking</text>
+      <text x="20" y="80" fill="#94a3b8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">Automated Cal.com Core</text>
+    </g>
+
+    <g transform="translate(215, 220)">
+      <rect width="170" height="110" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.06)"/>
+      <text x="20" y="35" fill="#38bdf8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="16">⚡</text>
+      <text x="20" y="60" fill="#f8fafc" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="bold">Corporate Intake</text>
+      <text x="20" y="80" fill="#94a3b8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">+300% Inbound Surge</text>
+    </g>
+
+    <g transform="translate(405, 220)">
+      <rect width="170" height="110" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.06)"/>
+      <text x="20" y="35" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="16">📖</text>
+      <text x="20" y="60" fill="#f8fafc" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="bold">Book Releases</text>
+      <text x="20" y="80" fill="#94a3b8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">Global Payment Hub</text>
+    </g>
+  </g>
+</svg>

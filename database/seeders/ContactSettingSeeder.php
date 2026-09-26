@@ -16,9 +16,9 @@ class ContactSettingSeeder extends Seeder
             ['id' => 1],
             [
                 'company_email' => 'hello@cypressiqagency.com',
-                'phone_number' => '+1 (555) 0123-4567',
-                'whatsapp_number' => '+155501234567',
-                'address' => 'Accra Business District, Ghana',
+                'phone_number' => '+254 745 763 093',
+                'whatsapp_number' => '+254745763093',
+                'address' => 'Pinkam House Nakuru, Kenya',
                 'google_map_embed' => ''
             ]
         );

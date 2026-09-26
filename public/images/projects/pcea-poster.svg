@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bgPcea" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a101f"/>
+      <stop offset="50%" stop-color="#0f1f3d"/>
+      <stop offset="100%" stop-color="#050a14"/>
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <radialGradient id="haloPcea" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="rgba(56,189,248,0.25)"/>
+      <stop offset="100%" stop-color="rgba(10,16,31,0)"/>
+    </radialGradient>
+    <pattern id="gridPcea" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgPcea)"/>
+  <rect width="800" height="450" fill="url(#haloPcea)"/>
+  <rect width="800" height="450" fill="url(#gridPcea)"/>
+
+  <!-- Mockup Window -->
+  <g transform="translate(100, 45)">
+    <!-- Browser Chrome -->
+    <rect width="600" height="360" rx="16" fill="#0f172a" stroke="rgba(255,255,255,0.12)" stroke-width="1.5"/>
+    <rect width="600" height="42" rx="16" fill="#1e293b"/>
+    <path d="M 0 42 L 600 42" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <!-- Window Controls -->
+    <circle cx="24" cy="21" r="5" fill="#ef4444"/>
+    <circle cx="42" cy="21" r="5" fill="#f59e0b"/>
+    <circle cx="60" cy="21" r="5" fill="#10b981"/>
+    <!-- Address Bar -->
+    <rect x="90" y="10" width="360" height="22" rx="6" fill="rgba(0,0,0,0.3)"/>
+    <text x="105" y="25" fill="#94a3b8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11">https://pceaneemanakuru.com</text>
+
+    <!-- Church Portal Content -->
+    <!-- Hero Banner inside Mockup -->
+    <rect x="25" y="65" width="550" height="130" rx="10" fill="url(#blueGlow)" opacity="0.15"/>
+    <rect x="25" y="65" width="550" height="130" rx="10" fill="none" stroke="rgba(56,189,248,0.3)" stroke-width="1"/>
+    
+    <text x="45" y="105" fill="#f8fafc" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="20" font-weight="bold">PCEA NEEMA CHURCH NAKURU</text>
+    <text x="45" y="130" fill="#38bdf8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="600">Digital Ministry &amp; Global Congregational Hub</text>
+    <text x="45" y="155" fill="#94a3b8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="11">Live HD Broadcasts • Daraja M-Pesa Giving • Fellowship Portals</text>
+
+    <!-- Live Stream Widget -->
+    <g transform="translate(25, 215)">
+      <rect width="265" height="160" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.06)"/>
+      <circle cx="132" cy="65" r="22" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="1.5"/>
+      <polygon points="128,55 142,65 128,75" fill="#ef4444"/>
+      <text x="132" y="105" fill="#f1f5f9" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Live Ministry Stream</text>
+      <text x="132" y="125" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10" text-anchor="middle">● 10k+ Weekly Congregation</text>
+    </g>
+
+    <!-- M-Pesa Giving Widget -->
+    <g transform="translate(310, 215)">
+      <rect width="265" height="160" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.06)"/>
+      <rect x="20" y="20" width="36" height="36" rx="8" fill="#10b981" opacity="0.2"/>
+      <text x="38" y="44" fill="#10b981" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="16" text-anchor="middle">⚡</text>
+      <text x="68" y="36" fill="#f1f5f9" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="12" font-weight="bold">M-Pesa Tithes &amp; Giving</text>
+      <text x="68" y="52" fill="#94a3b8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">Instant Automated STK Push</text>
+      <rect x="20" y="70" width="225" height="28" rx="6" fill="#0f172a" stroke="rgba(255,255,255,0.08)"/>
+      <text x="32" y="88" fill="#38bdf8" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="10">Paybill Verified • Zero Drop-off</text>
+    </g>
+  </g>
+</svg>

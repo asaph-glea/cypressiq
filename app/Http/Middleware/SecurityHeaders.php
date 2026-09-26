@@ -35,7 +35,7 @@ class SecurityHeaders
         );
 
         // Content Security Policy — allows inline styles/scripts needed by Alpine.js
-        // and the admin WYSIWYG editor, plus Google Fonts
+        // and the admin WYSIWYG editor, plus Google Fonts and media
         $response->headers->set(
             'Content-Security-Policy',
             implode('; ', [
@@ -44,6 +44,8 @@ class SecurityHeaders
                 "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
                 "font-src 'self' https://fonts.gstatic.com data:",
                 "img-src 'self' data: https:",
+                "media-src 'self' data: https: blob:",
+                "frame-src 'self' https://www.youtube.com https://player.vimeo.com",
                 "connect-src 'self'",
                 "frame-ancestors 'self'",
             ])

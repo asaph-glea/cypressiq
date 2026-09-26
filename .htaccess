@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block access to sensitive configuration, environment and system files
+    RewriteRule ^(\.env|\.git|\.editorconfig|composer\.(json|lock)|package(-lock)?\.json|phpunit\.xml|artisan) - [F,L,NC]
+
+    # Direct access to public/storage assets
+    RewriteRule ^storage/(.*)$ public/storage/$1 [L]
+
+    # Forward traffic to /public if document root is set to project root on shared hosting
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes

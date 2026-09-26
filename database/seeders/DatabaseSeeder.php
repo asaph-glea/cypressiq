@@ -14,28 +14,57 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $password = env('ADMIN_PASSWORD');
+        $password = config('services.admin.password') ?: env('ADMIN_PASSWORD');
+        $email = config('services.admin.email') ?: env('ADMIN_EMAIL', 'admin@cypressiq.agency');
 
         if (empty($password)) {
-            $this->command->error('ADMIN_PASSWORD is not set in your .env file. Seeder aborted.');
+            $this->command->error('ADMIN_PASSWORD is not set in your .env file or configuration. Seeder aborted.');
             return;
         }
 
-        User::firstOrCreate(
-            ['email' => 'admin@cypressiq.agency'],
+        // 1. Super Admin Account
+        User::updateOrCreate(
+            ['email' => $email],
             [
-                'name'     => 'Admin User',
-                'password' => Hash::make($password),
-                'is_admin' => true,
+                'name'      => 'Executive Admin',
+                'password'  => Hash::make($password),
+                'role'      => User::ROLE_SUPER_ADMIN,
+                'is_admin'  => true,
+                'is_active' => true,
             ]
         );
 
-        $this->command->info('Admin user seeded successfully.');
+        // 2. Growth & Marketing (Sales + Marketing) Department Account
+        User::firstOrCreate(
+            ['email' => 'growth@cypressiq.agency'],
+            [
+                'name'      => 'Growth & Sales Team',
+                'password'  => Hash::make($password),
+                'role'      => User::ROLE_GROWTH,
+                'is_admin'  => true,
+                'is_active' => true,
+            ]
+        );
 
-        // Seed SEO Blogs
+        // 3. Product & Engineering (Product PM + Engineer) Department Account
+        User::firstOrCreate(
+            ['email' => 'engineer@cypressiq.agency'],
+            [
+                'name'      => 'Product & Engineering Lead',
+                'password'  => Hash::make($password),
+                'role'      => User::ROLE_PRODUCT_ENGINEER,
+                'is_admin'  => true,
+                'is_active' => true,
+            ]
+        );
+
+        $this->command->info('Super Admin, Growth & Marketing, and Product & Engineering users seeded successfully.');
+
+        // Seed SEO Blogs & Trust / Social Proof
         $this->call([
             SeoBlogSeeder::class,
+            TrustSeeder::class,
         ]);
-        $this->command->info('SEO blogs seeded successfully.');
+        $this->command->info('SEO blogs and Trust data seeded successfully.');
     }
 }
